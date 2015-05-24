@@ -1,0 +1,11 @@
+.cask
+.tmp
+tmp
+*.cache
+recentf
+ido.last
+.DS_Store
+auto-save-lit
+eshell
+\#*\#
+.emacs.desktop

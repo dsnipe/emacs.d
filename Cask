@@ -1,0 +1,46 @@
+(source melpa)
+(source marmalade)
+(source gnu)
+
+(depends-on "bind-key")
+(depends-on "key-chord")
+(depends-on "use-package")
+(depends-on "cask")
+(depends-on "dash")
+(depends-on "exec-path-from-shell")
+(depends-on "drag-stuff")
+(depends-on "expand-region")
+(depends-on "f")
+(depends-on "htmlize")
+(depends-on "idle-highlight-mode")
+(depends-on "multiple-cursors")
+(depends-on "pallet")
+(depends-on "popwin")
+(depends-on "prodigy")
+(depends-on "s")
+(depends-on "smartparens")
+(depends-on "smex")
+(depends-on "web-mode")
+(depends-on "yasnippet")
+(depends-on "magit")
+
+(depends-on "flx")
+(depends-on "flx-ido")
+(depends-on "flx-isearch")
+
+(depends-on "helm")
+(depends-on "helm-swoop")
+
+(depends-on "flycheck")
+
+(depends-on "projectile")
+(depends-on "grizzl")
+
+(depends-on "evil")
+(depends-on "evil-leader")
+(depends-on "evil-surround")
+(depends-on "evil-nerd-commenter")
+
+(depends-on "neotree")
+
+(depends-on "molokai" :git "https://github.com/alloy-d/color-theme-molokai")
