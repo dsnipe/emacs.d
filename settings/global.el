@@ -10,6 +10,13 @@
       enable-local-eval t
       ring-bell-function 'ignore)
 
+;; Backup settings
+(setq version-control t
+			kept-new-versions 5
+			kept-old-versions 0
+			delete-old-versions t)
+(setq backup-directory-alist '(("". "~/.emacs.d/.backups" )))
+
 ;; Cturtup screen
 (setq-default inhibit-startup-buffer-menu nil
               inhibit-startup-screen        t
@@ -20,18 +27,6 @@
 ;; Enable save sessions
 (setq desktop-save-mode 1)
 
-;; Activate Ido mode
-(ido-mode t)
-(setq ido-decorations (quote ("\n↪ "     "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]"
-														" [Too big]" " [Confirm]")))
-(setq ido-ignore-buffers '("^ " "*Completions*" "*Shell Command Output*"
-													 "*Messages*" "Async Shell Command"))
-(ido-everywhere 1)
-(flx-ido-mode 1)
-;; disable ido faces to see flx highlights.
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
-																				
 ;; Show and create matching parens automaticaly
 (show-paren-mode t)
 

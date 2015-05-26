@@ -9,3 +9,6 @@ auto-save-lit
 eshell
 \#*\#
 .emacs.desktop
+/Cask.bak
+/smex-items
+/.mc-lists.el

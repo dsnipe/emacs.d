@@ -3,11 +3,11 @@
 ;; =============================================================================
 ;; Add /themes directory for storing custom themes
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(setq molokai-theme-kit t)
-(use-package molokai
-	:init
-	(setq molokai-theme-kit t))
-(load-theme 'molokai t)
+;; (setq molokai-theme-kit t)
+;; (use-package molokai
+;; 	:init
+;; 	(setq molokai-theme-kit t))
+(load-theme 'ujelly t)
 
 ;; Setup my favorite fonts
 (set-face-attribute 'default nil :family "Source Code Pro" :height 150)
@@ -19,7 +19,7 @@
 
 (defun linum-format-func (line)
 	(let ((w (length (number-to-string (count-lines (point-min) (point-max))))))
-		(propertize (format (format " %%%dd " w) line) 'face 'linum)))
+		(propertize (format (format "%%%dd " w) line) 'face 'linum)))
 
 (setq linum-format 'linum-format-func)
 ;; use customized linum-format: add a addition space after the line number

@@ -1,8 +1,10 @@
-;; =============================================================================                        
-;; Evil                                                                                               
-;; =============================================================================
+;;; init-evil.el --- Evil init file
+;;; Commentary: 
+;;; Code:
+
 (evil-mode 1)
 (use-package evil
+	:ensure t
 	:commands evil-mode
 	:init
 	(progn
@@ -28,6 +30,7 @@
 										"k" 'kill-buffer
 										"e" 'find-file
 										"p" 'projectile-find-file)
+		(evil-leader/set-key-for-mode 'emacs-lisp-mode "E" 'eval-buffer)
 
 		;; Use C-HJKL to move on windows
 		(global-set-key (kbd "C-h") 'windmove-left)
@@ -75,5 +78,7 @@
 	)
 )
 
-
+(use-package evil-surround
+	:config
+	(global-evil-surround-mode t))
 

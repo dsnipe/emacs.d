@@ -1,6 +1,7 @@
 (use-package powerline
 	:config
-	(setq powerline-arrow-shape 'diagonal) 
-	(powerline-evil-vim-color-theme)
-	(display-time-mode t)
-)
+	(progn
+		(setq powerline-arrow-shape 'curve) 
+		(powerline-default-theme)
+		(powerline-evil-vim-color-theme)
+		(display-time-mode t)))
