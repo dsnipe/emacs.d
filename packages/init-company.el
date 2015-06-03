@@ -2,11 +2,14 @@
 	:defer 2
 	:init
 	(progn 
-		(setq company-idle-delay 0.2
-						company-tooltip-limit 10
-						company-minimum-prefix-length 2
-						company-tooltip-flip-when-above t))
-
+		(setq company-idle-delay 0
+					company-echo-delay 0
+					company-begin-commands '(self-insert-command)
+					company-dabbrev-downcase nil
+					company-selection-wrap-around t
+					company-tooltip-limit 10
+					company-minimum-prefix-length 2
+					company-tooltip-flip-when-above t))
 	:config
 	(progn 
 		(global-company-mode t)
@@ -70,7 +73,7 @@
 
 		(global-set-key [tab] 'tab-indent-or-complete)
 		(global-set-key (kbd "TAB") 'tab-indent-or-complete)
-		(global-set-key [(control return)] 'company-complete-common)
+		;; (global-set-key [(control return)] 'company-complete-common)
 
 		(define-key company-active-map [tab] 'expand-snippet-or-complete-selection)
 		(define-key company-active-map (kbd "TAB") 'expand-snippet-or-complete-selection)

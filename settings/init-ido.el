@@ -1,5 +1,4 @@
 (use-package ido
-	:ensure t
 	:config
 	(progn
 		(ido-mode t)
@@ -14,6 +13,7 @@
 					ido-use-faces nil)
 		(setq ido-create-new-buffer 'always
 					ido-max-prospects      50)))
+
 (use-package ido-vertical-mode
 	:defer 1
 	:config

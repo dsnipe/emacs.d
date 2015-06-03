@@ -12,3 +12,6 @@ eshell
 /Cask.bak
 /smex-items
 /.mc-lists.el
+SessionDesktop.el
+ede-projects.el
+tramp

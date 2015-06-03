@@ -1,7 +1,14 @@
 (use-package powerline
 	:config
 	(progn
-		(setq powerline-arrow-shape 'curve) 
-		(powerline-default-theme)
-		(powerline-evil-vim-color-theme)
-		(display-time-mode t)))
+		;; (powerline-center-evil-theme)
+	  (require 'powerline-dmt-theme)
+		(powerline-dmt-theme)
+		(setq powerline-default-separator 'wave) 
+		(setq powerline-arrow-shape 'wave)
+		;; (powerline-evil-vim-color-theme)
+		(setq display-time-24hr-format t)
+		(display-time-mode t)
+		))
+
+(setq ns-use-srgb-colorspace t)  ;; move to global

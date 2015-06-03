@@ -7,7 +7,10 @@
 ;; (use-package molokai
 ;; 	:init
 ;; 	(setq molokai-theme-kit t))
-(load-theme 'ujelly t)
+(load-theme 'nice t)
+
+(unless window-system
+		(set-face-attribute 'default nil :background "unspecific-bg"))
 
 ;; Setup my favorite fonts
 (set-face-attribute 'default nil :family "Source Code Pro" :height 150)
@@ -16,6 +19,9 @@
 
 (global-linum-mode t)
 (setq-default truncate-lines t)
+(use-package hlinum
+	:config
+	(hlinum-activate))
 
 (defun linum-format-func (line)
 	(let ((w (length (number-to-string (count-lines (point-min) (point-max))))))
@@ -33,12 +39,19 @@
 
 ;; Highlight cursor line
 (global-hl-line-mode t)
-(set-face-background hl-line-face "gray10")
 
 ;; Make lines longer than 80 highlighted
 (setq whitespace-line-column 120) ;; limit line length
 (setq whitespace-style '(face lines-tail))
 (global-whitespace-mode t)
+
+;; Tabbar mode
+(use-package tabbar
+	:init
+	(progn
+		(setq tabbar-use-images nil))
+	:config
+	(tabbar-mode t))
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
