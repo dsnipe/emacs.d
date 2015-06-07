@@ -2,16 +2,16 @@
 ;; ui
 ;; =============================================================================
 ;; Add /themes directory for storing custom themes
+;; Themes and theme customizations
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-;; (setq molokai-theme-kit t)
-;; (use-package molokai
-;; 	:init
-;; 	(setq molokai-theme-kit t))
 (load-theme 'nice t)
 
 (unless window-system
 		(set-face-attribute 'default nil :background "unspecific-bg"))
 
+(defface mode-line '((t (:background "grey75" :foreground "dark gray")))
+	"Default custom Mode line colors"
+	:group 'mode-line)
 ;; Setup my favorite fonts
 (set-face-attribute 'default nil :family "Source Code Pro" :height 150)
 
@@ -22,11 +22,9 @@
 (use-package hlinum
 	:config
 	(hlinum-activate))
-
 (defun linum-format-func (line)
 	(let ((w (length (number-to-string (count-lines (point-min) (point-max))))))
 		(propertize (format (format "%%%dd " w) line) 'face 'linum)))
-
 (setq linum-format 'linum-format-func)
 ;; use customized linum-format: add a addition space after the line number
 
@@ -36,7 +34,6 @@
 
 ;; show the column number in the status bar
 (column-number-mode t)
-
 ;; Highlight cursor line
 (global-hl-line-mode t)
 
@@ -44,14 +41,6 @@
 (setq whitespace-line-column 120) ;; limit line length
 (setq whitespace-style '(face lines-tail))
 (global-whitespace-mode t)
-
-;; Tabbar mode
-(use-package tabbar
-	:init
-	(progn
-		(setq tabbar-use-images nil))
-	:config
-	(tabbar-mode t))
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 

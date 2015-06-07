@@ -15,15 +15,42 @@
 			delete-old-versions t)
 (setq backup-directory-alist '(("". "~/.emacs.d/.backups" )))
 
+;; Store autosave files in system temp
+(setq backup-directory-alist
+			`((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+				`((".*" ,temporary-file-directory t)))
+
 ;; Startup screen
 (setq-default inhibit-startup-buffer-menu nil
               inhibit-startup-screen        t
               initial-buffer-choice       nil
               initial-scratch-message     nil
               initial-major-mode          'fundamental-mode)
-
-;; Enable save sessions
+																				;
+;; ENABLEsave sessions
 (setq desktop-save-mode 1)
+
+(defun new-above-line ()
+	"Move to line above current"
+	(interactive)
+	(beginning-of-line)
+	(new-line-and-indent))
+
+(defun new-line-without-break ()
+	"Move to end of line and insert new line"
+	(interactive)
+	(let ((oldpos (point)))
+		(end-of-line)
+		(comment-indent-new-line)))
+
+(global-set-key (kbd "M-RET") 'new-line-without-break)
+(global-set-key (kbd "M-S-RET") 'new-above-line) ;; not work in terminal
+
+(use-package move-text
+	:bind
+	(("M-S-<up>" . move-text-up)
+	 ("M-S-<down>" . move-text-down)))
 
 ;; Show and create matching parens automaticaly
 (show-paren-mode t)

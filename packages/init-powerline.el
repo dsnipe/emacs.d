@@ -8,7 +8,6 @@
 		(setq powerline-arrow-shape 'wave)
 		;; (powerline-evil-vim-color-theme)
 		(setq display-time-24hr-format t)
-		(display-time-mode t)
-		))
+		(display-time-mode t)))
 
 (setq ns-use-srgb-colorspace t)  ;; move to global

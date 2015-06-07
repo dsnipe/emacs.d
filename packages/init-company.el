@@ -13,6 +13,9 @@
 	:config
 	(progn 
 		(global-company-mode t)
+		(add-hook 'alchemist-mode-hook
+							(( lambda ()
+								 (setq company-backends (delete 'alchemist-company company-backends)))))
 		
 		(defun check-expansion ()
 			(save-excursion

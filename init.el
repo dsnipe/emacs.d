@@ -34,6 +34,7 @@
 (add-dotfile-path "settings/")
 (add-dotfile-path "packages/")
 (add-dotfile-path "lib/")
+
 ;; load packages inits
 (load-dotfile "packages/init-evil.el")
 (load-dotfile "packages/init-key-chord.el")
@@ -58,6 +59,7 @@
 
 ;; Load custom libs
 (load-dotfile "lib/ido-other-window.el") ;; Open from IDO to slit window
+(load-dotfile "lib/iterm2-spec.el") ;; special key decodes
 
 ;; Load settings
 (load-dotfile "settings/global.el")
@@ -69,8 +71,8 @@
 (use-package server
   :if window-system
   :config
-  (unless (server-running-p)
-    ))
+  (unless (server-running-p)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
