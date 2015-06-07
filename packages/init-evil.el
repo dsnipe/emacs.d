@@ -8,16 +8,16 @@
 	:commands evil-mode
 	:init
 	(progn
-		(setq evil-default-state 'normal)
-		(setq evil-default-cursor t)
-		(setq evil-auto-indent t)
-		(setq evil-shift-width 2)
-		(setq evil-search-wrap t)
-		(setq evil-find-skip-newlines t)
-		(setq evil-move-cursor-back nil)
-		(setq evil-mode-line-format 'before)
-		(setq evil-esc-delay 0) ;; not wait after <esc>
-		(setq evil-cross-lines t))
+		(setq-default evil-default-state 'normal)
+		(setq-default evil-default-cursor nil)
+		(setq-default evil-auto-indent t)
+		(setq-default evil-shift-width 2)
+		(setq-default evil-search-wrap t)
+		(setq-default evil-find-skip-newlines t)
+		(setq-default evil-move-cursor-back nil)
+		(setq-default evil-mode-line-format 'before)
+		(setq-default evil-esc-delay 0) ;; not wait after <esc>
+		(setq-default evil-cross-lines t))
 	
 	:config
 	(progn
@@ -29,9 +29,45 @@
 										"b" 'switch-to-buffer
 										"k" 'kill-buffer
 										"e" 'find-file
-										"p" 'projectile-find-file)
+										"p" 'projectile-find-file
+										"w" 'save-buffer
+										"ms" 'magit-status)
 		(evil-leader/set-key-for-mode 'emacs-lisp-mode "E" 'eval-buffer)
 
+		;; Visual moving
+		(defun dmt/shift-left-visual ()
+			"Shift left and restore visual selection."
+			(interactive)
+			(evil-shift-left (region-beginning) (region-end))
+			(evil-normal-state)
+			(evil-visual-restore))
+
+		(defun dmt/shift-right-visual ()
+			"Shift right and restore visual selection."
+			(interactive)
+			(evil-shift-right (region-beginning) (region-end))
+			(evil-normal-state)
+			(evil-visual-restore))
+
+		(defun dmt/shift-right-normal ()
+			"Shift right in normal mode"
+			(interactive)
+			(evil-shift-right (point-at-bol) (point-at-eol)))
+
+		(defun dmt/shift-left-normal ()
+			"Shift right in normal mode"
+			(interactive)
+			(evil-shift-left (point-at-bol) (point-at-eol)))
+		
+		(define-key evil-visual-state-map (kbd ">") 'dmt/shift-right-visual)
+		(define-key evil-normal-state-map (kbd ">") 'dmt/shift-right-normal)
+		(define-key evil-visual-state-map (kbd "<") 'dmt/shift-left-visual)
+		(define-key evil-normal-state-map (kbd "<") 'dmt/shift-left-normal)
+		(define-key evil-visual-state-map (kbd "TAB") 'dmt/shift-right-visual)
+		(define-key evil-normal-state-map (kbd "TAB") 'dmt/shift-right-normal)
+		(define-key evil-visual-state-map (kbd "<backtab>") 'dmt/shift-left-visual)
+		(define-key evil-normal-state-map (kbd "<backtab>") 'dmt/shift-left-normal)
+		
 		;; Use C-HJKL to move on windows
 		(global-set-key (kbd "C-h") 'windmove-left)
 		(global-set-key (kbd "C-l") 'windmove-right)
@@ -82,3 +118,5 @@
 	:config
 	(global-evil-surround-mode t))
 
+(use-package evil-visualstar
+	:config (global-evil-visualstar-mode))
