@@ -27,7 +27,7 @@
 		(evil-leader/set-leader "<SPC>")
 		(evil-leader/set-key
 										"b" 'switch-to-buffer
-										"k" 'kill-buffer
+										"kb" 'kill-buffer
 										"e" 'find-file
 										"p" 'projectile-find-file
 										"w" 'save-buffer

@@ -13,9 +13,11 @@
 	:config
 	(progn 
 		(global-company-mode t)
+
+		;; Disable Alchemist backend
 		(add-hook 'alchemist-mode-hook
-							(( lambda ()
-								 (setq company-backends (delete 'alchemist-company company-backends)))))
+				`(lambda ()
+						(setq company-backends (delete 'alchemist-company company-backends))))
 		
 		(defun check-expansion ()
 			(save-excursion
@@ -98,5 +100,6 @@
 						backend
 						(append (if (consp backend) backend (list backend))
 																'(:with company-yasnippet))))
-		(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))))
+		(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+		))
 

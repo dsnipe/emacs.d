@@ -4,22 +4,22 @@
 ;; 
 ;; Code:
 
-(defface powerline-active0 '((t (:foreground "#005fff" :weight bold :background "color-235" :inherit mode-line)))
+(defface pw-active0 '((t (:foreground "#005fff" :background "#262626" :inherit mode-line)))
 	"Powerline face 0."
 	:group 'powerine)
-(defface powerline-inactive0 '((t (:background nil :weight bold :inherit modeline-inactive)))
+(defface pw-inactive0 '((t (:background nil :weight bold )))
 	"Powerline face 0."
 	:group 'powerline)
 (defface pw-active1 '((t (:foreground "white" :background "grey22" :inherit mode-line)))
 	"Custom powerline active1 face"
 	:group 'powerine)
-(defface pw-inactive1 '((t (:background "grey11" :inherit mode-line)))
+(defface pw-inactive1 '((t (:background "#1c1c1c" :inherit mode-line)))
 	"Custom powerline active1 face"
 	:group 'powerine)
-(defface pw-active2 '((t (:foreground "color-234" :background "grey40" :inherit mode-line)))
+(defface pw-active2 '((t (:foreground "#1c1c1c" :background "grey40" :inherit mode-line)))
 	"Custom powerline active1 face"
 	:group 'powerine)
-(defface pw-active2 '((t (:background "grey20" :inherit mode-line)))
+(defface pw-inactive2 '((t (:background "grey20" :inherit mode-line)))
 	"Custom powerline active1 face"
 	:group 'powerine)
 (defface powerline-evil-base-face '((t (:foreground "#1c1c1c")))
@@ -45,7 +45,7 @@
 		  (:eval
 		   (let* ((active (powerline-selected-window-active))
 			  (mode-line (if active 'mode-line 'mode-line-inactive))
-				(face0 (if active 'powerline-active0 'powerline-inactive0))
+				(face0 (if active 'pw-active0 'pw-inactive0))
 			  (face1 (if active 'pw-active1 'pw-inactive1))
 			  (face2 (if active 'pw-active2 'pw-inactive2))
 			  (separator-left (intern (format "powerline-%s-%s"

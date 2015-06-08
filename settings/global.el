@@ -28,8 +28,15 @@
               initial-scratch-message     nil
               initial-major-mode          'fundamental-mode)
 																				;
-;; ENABLEsave sessions
+;; ENABLE save sessions
 (setq desktop-save-mode 1)
+
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
+;; For dired-mode neccessary `brew install coreutils'
+(setq ls-lisp-use-insert-directory-program t) 
+(setq insert-directory-program "gls") 
 
 (defun new-above-line ()
 	"Move to line above current"
@@ -53,10 +60,10 @@
 	 ("M-S-<down>" . move-text-down)))
 
 ;; Show and create matching parens automaticaly
-(show-paren-mode t)
-(use-package popwin
-  :config
-    (popwin-mode t))
+;; (show-paren-mode t)
+;; (use-package popwin
+;;   :config
+;;     (popwin-mode t))
 
 (use-package zoom-window
 	:config

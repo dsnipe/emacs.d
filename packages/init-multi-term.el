@@ -6,7 +6,12 @@
 	;; (add-to-list 'term-unbind-key-list '("C-h" "C-j" "C-l" "C-k"))
 		)
 	:config
-	(progn 
+	(progn
+		(defun term-send-tab ()
+			"Send tab for complettiotn"
+			(interactive)
+			(term-send-raw-string "\t"))
+		(add-to-list 'term-bind-key-alist '("<tab>" . term-send-tab))
 		(global-set-key (kbd "§") 'it-multi-term-dedicated-toggle)
 		(defun it-multi-term-dedicated-toggle ()
 			"jump back to previous location after toggling ded term off"
@@ -18,8 +23,4 @@
 				(progn
 					(setq old-buf (current-buffer))
 					(multi-term-dedicated-toggle)
-					(multi-term-dedicated-select))
-				)
-			)
-	)
-)
+					(multi-term-dedicated-select))))))

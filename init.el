@@ -51,7 +51,6 @@
 ;; (load-dotfile "packages/init-helm.el")
 (load-dotfile "packages/init-powerline.el")
 (load-dotfile "packages/init-multi-term.el")
-;; (load-dotfile "packages/init-sml.el")
 
 ;; Programming
 (load-dotfile "settings/init-ruby.el")
@@ -85,13 +84,14 @@
  '(helm-descbinds-mode t)
  '(hl-paren-background-colors (quote ("#2492db" "#95a5a6" nil)))
  '(hl-paren-colors (quote ("#ecf0f1" "#ecf0f1" "#c0392b")))
- '(mac-command-modifier nil)
+ '(mac-command-modifier (quote meta))
  '(mac-option-modifier (quote meta))
+ '(mac-right-command-modifier nil)
  '(mac-text-scale-standard-width 120))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(mode-line ((t (:background "grey75" :foreground "black")))))
  

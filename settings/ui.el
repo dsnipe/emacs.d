@@ -9,9 +9,6 @@
 (unless window-system
 		(set-face-attribute 'default nil :background "unspecific-bg"))
 
-(defface mode-line '((t (:background "grey75" :foreground "dark gray")))
-	"Default custom Mode line colors"
-	:group 'mode-line)
 ;; Setup my favorite fonts
 (set-face-attribute 'default nil :family "Source Code Pro" :height 150)
 
