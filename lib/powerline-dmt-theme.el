@@ -7,24 +7,29 @@
 (defface pw-active0 '((t (:foreground "#005fff" :background "#262626" :inherit mode-line)))
 	"Powerline face 0."
 	:group 'powerine)
-(defface pw-inactive0 '((t (:background nil :weight bold )))
+(defface pw-inactive0 '((t (:inherit mode-line-inactive)))
 	"Powerline face 0."
 	:group 'powerline)
 (defface pw-active1 '((t (:foreground "white" :background "grey22" :inherit mode-line)))
 	"Custom powerline active1 face"
 	:group 'powerine)
-(defface pw-inactive1 '((t (:background "#1c1c1c" :inherit mode-line)))
+(defface pw-inactive1 '((t (:inherit mode-line-inactive)))
 	"Custom powerline active1 face"
 	:group 'powerine)
 (defface pw-active2 '((t (:foreground "#1c1c1c" :background "grey40" :inherit mode-line)))
 	"Custom powerline active1 face"
 	:group 'powerine)
-(defface pw-inactive2 '((t (:background "grey20" :inherit mode-line)))
+(defface pw-inactive2 '((t (:inherit mode-line-inactive)))
 	"Custom powerline active1 face"
 	:group 'powerine)
 (defface powerline-evil-base-face '((t (:foreground "#1c1c1c")))
   "Powerline evil base customization"
   :group 'powerline)
+
+(set-face-attribute 'mode-line-inactive nil
+										:box nil
+                    ;; :underline t
+                    :background (face-background 'pw-active0))
 
 (require 'powerline-evil)
 ;; DmT Powerline theme
@@ -69,11 +74,11 @@
 							 (powerline-vc face2)
 							 (funcall separator-left face2 face0))))
 			  (rhs (list
-					 (funcall separator-right face0 face2)
+						;; (funcall separator-right face1 face0)
+						 (powerline-minor-modes face0 'r)
+		  			 (funcall separator-right face0 face2)
 						 (powerline-major-mode face2 'l)
 				     (powerline-raw " " face2)
-				     ;; (funcall separator-right face1 face0)
-						 ;; (powerline-minor-modes face0 'r)
 						 (funcall separator-right face2 face1)
 						 (powerline-raw " " face1)
 						 (powerline-raw global-mode-string face1)

@@ -20,6 +20,8 @@
 		;; Show projectile lists by most recently active
 		(setq projectile-sort-order (quote recently-active))
 
+		(add-hook 'projectile-mode-hook 'projectile-rails-on)
+
 		;; Key bindings
 		(global-unset-key (kbd "M-p"))
 		(global-set-key (kbd "M-p") 'projectile-find-file)

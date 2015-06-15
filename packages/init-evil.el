@@ -11,6 +11,7 @@
 		(setq-default evil-default-state 'normal)
 		(setq-default evil-default-cursor nil)
 		(setq-default evil-auto-indent t)
+		(setq-default evil-want-visual-char-semi-exclusive t)
 		(setq-default evil-shift-width 2)
 		(setq-default evil-search-wrap t)
 		(setq-default evil-find-skip-newlines t)
@@ -26,12 +27,14 @@
 
 		(evil-leader/set-leader "<SPC>")
 		(evil-leader/set-key
-										"b" 'switch-to-buffer
+										"b"  'switch-to-buffer
 										"kb" 'kill-buffer
-										"e" 'find-file
-										"p" 'projectile-find-file
-										"w" 'save-buffer
-										"ms" 'magit-status)
+										"e"  'find-file
+										"p"  'projectile-find-file
+										"w"  'save-buffer
+										","  'switch-to-previous-buffer
+										"ms" 'magit-status
+										"ml" 'magit-log)
 		(evil-leader/set-key-for-mode 'emacs-lisp-mode "E" 'eval-buffer)
 
 		;; Visual moving
@@ -81,8 +84,28 @@
 		
 		;; use ido to open files
 		(define-key evil-ex-map "e " 'ido-find-file)
+		(define-key evil-ex-map "eb " 'eval-buffer)
 		;;(define-key evil-ex-map "vs " 'ido-find-file)
 		(define-key evil-ex-map "b " 'ido-switch-buffer)
+		;; emacs binding for end of line movement
+		(define-key evil-normal-state-map "\C-e" 'evil-end-of-line)
+		(define-key evil-motion-state-map "\C-e" 'evil-end-of-line)
+		(define-key evil-insert-state-map "\C-e" 'evil-end-of-line)
+
+		;; Yank whole buffer
+		(define-key evil-normal-state-map (kbd "gy") (kbd "gg v G y"))
+
+		(defun fix-underscore-word ()
+		(modify-syntax-entry ?_ "w"))
+
+		(defun buffer-exists (bufname)   (not (eq nil (get-buffer bufname))))
+		(defun switch-to-previous-buffer ()
+			"Switch to previously open buffer.
+			Repeated invocations toggle between the two most recently open buffers."
+			(interactive)
+			;; Don't switch back to the ibuffer!!!
+			(if (buffer-exists "*Ibuffer*")  (kill-buffer "*Ibuffer*"))
+			(switch-to-buffer (other-buffer (current-buffer) 1)))
 
 		;;; esc quits
 		(define-key evil-normal-state-map [escape] 'keyboard-quit)

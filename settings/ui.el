@@ -16,9 +16,9 @@
 
 (global-linum-mode t)
 (setq-default truncate-lines t)
-(use-package hlinum
-	:config
-	(hlinum-activate))
+;; (use-package hlinum
+;; 	:config
+;; 	(hlinum-activate))
 (defun linum-format-func (line)
 	(let ((w (length (number-to-string (count-lines (point-min) (point-max))))))
 		(propertize (format (format "%%%dd " w) line) 'face 'linum)))
@@ -34,6 +34,7 @@
 ;; Highlight cursor line
 (global-hl-line-mode t)
 
+(setq blink-cursor-mode nil)
 ;; Make lines longer than 80 highlighted
 (setq whitespace-line-column 120) ;; limit line length
 (setq whitespace-style '(face lines-tail))
@@ -41,13 +42,27 @@
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
+(use-package highlight-symbol
+	:init
+	(progn 
+		(setq-default highlight-symbol-mode t)
+		(setq-default ghlight-symbol-on-navigation-p t)
+		(setq highlight-symbol-idle-delay 1)))
+
+;; make smooth scrolling
+(require 'smooth-scrolling)
+(setq smooth-scroll-margin 3)
+;; Delay updates to give Emacs a chance for other changes
+(setq linum-delay t)
+(setq redisplay-dont-pause t)
+
 ;; Fix cursor for Evil mode
 (defun my-send-string-to-terminal (string)
 	(unless (display-graphic-p) (send-string-to-terminal string)))
 
 (defun my-evil-terminal-cursor-change ()
 	(when (string= (getenv "TERM_PROGRAM") "iTerm.app")
-		(add-hook 'evil-insert-state-entry-hook (lambda () (my-send-string-to-terminal "\e]50;CursorShape=1\x7")))
+ 		(add-hook 'evil-insert-state-entry-hook (lambda () (my-send-string-to-terminal "\e]50;CursorShape=1\x7")))
 		(add-hook 'evil-insert-state-exit-hook  (lambda () (my-send-string-to-terminal "\e]50;CursorShape=0\x7"))))
 	(when (and (getenv "TMUX") (string= (getenv "TERM_PROGRAM") "iTerm.app"))
 		(add-hook 'evil-insert-state-entry-hook (lambda () (my-send-string-to-terminal "\ePtmux;\e\e]50;CursorShape=1\x7\e\\")))

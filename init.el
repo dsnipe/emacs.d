@@ -48,6 +48,7 @@
 (load-dotfile "packages/init-git-gutter.el")
 (load-dotfile "packages/init-yasnippet.el")
 (load-dotfile "packages/init-company.el")
+(load-dotfile "packages/init-emamux.el")
 ;; (load-dotfile "packages/init-helm.el")
 (load-dotfile "packages/init-powerline.el")
 (load-dotfile "packages/init-multi-term.el")

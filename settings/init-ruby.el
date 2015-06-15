@@ -1,29 +1,39 @@
-(use-package enh-ruby-mode
+(use-package ruby-mode
 	:init
+	(setenv "PAGER" "cat")
+	:config
 	(progn 
-	    (add-to-list 'auto-mode-alist '("\\.rake\\'" . enh-ruby-mode))
-	    (add-to-list 'auto-mode-alist '("\\.ru\\'" . enh-ruby-mode))
-	    (add-to-list 'auto-mode-alist '("Rakefile\\'" . enh-ruby-mode))
-	    (add-to-list 'auto-mode-alist '("\\.gemspec\\'" . enh-ruby-mode))
-	    (add-to-list 'auto-mode-alist '("Gemfile\\'" . enh-ruby-mode))
-	    (add-to-list 'auto-mode-alist '("Vagrantfile\\'" . enh-ruby-mode)))
-	    (add-to-list 'auto-mode-alist '("Guardfile\\'" . enh-ruby-mode))
+		(add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
+		(add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
+		(add-to-list 'auto-mode-alist '("Rakefile\\'" . ruby-mode))
+		(add-to-list 'auto-mode-alist '("\\.gemspec\\'" . ruby-mode))
+		(add-to-list 'auto-mode-alist '("Gemfile\\'" . ruby-mode))
+		(add-to-list 'auto-mode-alist '("Vagrantfile\\'" . ruby-mode))
+		(add-to-list 'auto-mode-alist '("Guardfile\\'" . ruby-mode))
 
-	    ;; Hooks
-	    (add-hook 'enh-ruby-mode-hook 'minitest-mode)
-	    (add-hook 'enh-ruby-mode-hook 'robe-mode)
-	    (add-hook 'robe-mode-hook 'ac-robe-setup)
-			(add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
+		;; Hooks
+		(add-hook 'ruby-mode-hook 'minitest-mode)
+		(add-hook 'ruby-mode-hook 'robe-mode)
+		(add-hook 'ruby-mode-hook 'yard-mode)
+		;; (add-hook 'robe-mode-hook 'ac-robe-setup)
+		(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
 
-	    (eval-after-load 'company
-		    '(push 'company-robe company-backends)))
+		(eval-after-load 'company
+			'(push 'company-robe company-backends))))
 
 (use-package rbenv
     ;; :defer t
     :config
-    (global-rbenv-mode))
+		(setq rbenv-modeline-function 'rbenv--modeline-plain)
+		(add-hook 'ruby-mode-hook 'global-rbenv-mode))
 
 (use-package minitest
     :defer
     :config
     '(minitest-install-snippets))
+
+(use-package ruby-block
+	;; :init
+	;; (setq ruby-block-highlight-toggle t)
+	:config
+	(ruby-block-mode t))

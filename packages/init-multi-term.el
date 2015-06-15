@@ -12,7 +12,7 @@
 			(interactive)
 			(term-send-raw-string "\t"))
 		(add-to-list 'term-bind-key-alist '("<tab>" . term-send-tab))
-		(global-set-key (kbd "§") 'it-multi-term-dedicated-toggle)
+		;; (global-set-key (kbd "§") 'it-multi-term-dedicated-toggle)
 		(defun it-multi-term-dedicated-toggle ()
 			"jump back to previous location after toggling ded term off"
 			(interactive)

@@ -12,7 +12,8 @@
 	:config
 	(progn
 		(smartparens-global-mode t)
-		;; add `end` after `do` and `fn`
+		
+		;; add `end` after `do` and `fn` for Elixir Lang
 		(sp-with-modes '(elixir-mode)
 			(sp-local-pair "fn" "end"
 										 :when '(("SPC" "RET"))
