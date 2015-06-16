@@ -15,3 +15,7 @@ eshell
 SessionDesktop.el
 ede-projects.el
 tramp
+bookmarks
+edts/
+url/
+ac-comphist.dat

@@ -75,7 +75,7 @@
 							 (funcall separator-left face2 face0))))
 			  (rhs (list
 						;; (funcall separator-right face1 face0)
-						 (powerline-minor-modes face0 'r)
+						 ;; (powerline-minor-modes face0 'r)
 		  			 (funcall separator-right face0 face2)
 						 (powerline-major-mode face2 'l)
 				     (powerline-raw " " face2)
