@@ -1,5 +1,4 @@
-(use-package ruby-mode
-	:init
+(use-package ruby-mode :init
 	(setenv "PAGER" "cat")
 	:config
 	(progn 
@@ -23,9 +22,13 @@
 
 (use-package rbenv
     ;; :defer t
-    :config
-		(setq rbenv-modeline-function 'rbenv--modeline-plain)
-		(add-hook 'ruby-mode-hook 'global-rbenv-mode))
+	:init
+	(progn
+		(setq rbenv-instaltation-dir "/usr/local/Cellar/rbenv/0.4.0/")
+		(setq rbenv-modeline-function 'rbenv--modeline-plain))
+  :config
+	(progn 
+		(add-hook 'ruby-mode-hook 'global-rbenv-mode)))
 
 (use-package minitest
     :defer

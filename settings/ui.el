@@ -4,14 +4,15 @@
 ;; Add /themes directory for storing custom themes
 ;; Themes and theme customizations
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'nice t)
+;; (load-theme 'nice t)
+(load-theme 'monokai t)
 
-(unless window-system
-		(set-face-attribute 'default nil :background "unspecific-bg"))
+;; (unless window-system
+		;; (set-face-attribute 'default nil :background "unspecific-bg"))
 
 ;; Setup my favorite fonts
-(set-face-attribute 'default nil :family "Source Code Pro" :height 150)
-
+(set-face-attribute 'default nil :family "Source Code Pro" :height 150 :weight 'normal)
+(setq mac-allow-anti-aliasing nil)  ;; turn off anti-aliasing
 ;;(set-face-attribute 'helm-candidate-number nil :background "#2875d7" :foreground "#fff")
 
 (global-linum-mode t)
@@ -42,12 +43,14 @@
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
-(use-package highlight-symbol
+(use-package highlight-thing
 	:init
-	(progn 
-		(setq-default highlight-symbol-mode t)
-		(setq-default ghlight-symbol-on-navigation-p t)
-		(setq highlight-symbol-idle-delay 1)))
+	(defface highlight-thing
+		'((t (:background "color-236")))
+		"Face that is used to highlight things."
+		:group 'highlight-thing)
+	:config
+	(global-highlight-thing-mode 1))
 
 ;; make smooth scrolling
 (require 'smooth-scrolling)
@@ -55,6 +58,11 @@
 ;; Delay updates to give Emacs a chance for other changes
 (setq linum-delay t)
 (setq redisplay-dont-pause t)
+
+(use-package golden-ratio
+	:config
+	(golden-ratio-mode 1)
+	(add-to-list 'golden-ratio-exclude-buffer-names " *NeoTree*"))
 
 ;; Fix cursor for Evil mode
 (defun my-send-string-to-terminal (string)

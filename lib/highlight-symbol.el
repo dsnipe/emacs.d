@@ -434,7 +434,7 @@ DIR has to be 1 or -1."
           (setq this-command 'highlight-symbol-jump))
       (error "No symbol at point"))))
 
-(provide 'highlight-symbol)
+;; (provide 'highlight-symbol)
 
 ;;; highlight-symbol.el ends here
 

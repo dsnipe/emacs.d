@@ -28,11 +28,17 @@
               initial-scratch-message     nil
               initial-major-mode          'fundamental-mode)
 																				;
+(setq create-lockfiles nil) ;; disable lockfile .#<filename>
+
 ;; ENABLE save sessions
 (setq desktop-save-mode 1)
 
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
+
+(use-package yaml
+	:config
+	(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode)))
 
 ;; I want underscores as part of word in all modes
 (modify-syntax-entry (string-to-char "_") "w" (standard-syntax-table))
@@ -50,7 +56,7 @@
 
 ;; For dired-mode neccessary `brew install coreutils'
 (setq ls-lisp-use-insert-directory-program t) 
-(setq insert-directory-program "gls") 
+;; (setq insert-directory-program "gls") 
 
 (defun new-above-line ()
 	"Move to line above current"
@@ -85,6 +91,8 @@
 	(global-set-key (kbd "C-w") 'ctrl-w-map)
 	(define-key ctrl-w-map (kbd "z") 'zoom-window-zoom))
 
+(global-set-key (kbd "M-s") 'save-buffer) ;; OSx style save
+ 
 ;; Not toolbar and menu-bar
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -92,7 +100,7 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; Fix problem with zsh
+;; Fix problem with zsh, disbale company and yas in terminal
 (setq system-uses-terminfo nil)
 (add-hook 'term-mode-hook (lambda()
         (setq yas-dont-activate t)))
@@ -106,6 +114,7 @@
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
+
 
 ;; Copy/Paste from OSX 
 (defun copy-from-osx ()

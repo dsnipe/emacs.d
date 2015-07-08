@@ -52,6 +52,7 @@
 ;; (load-dotfile "packages/init-helm.el")
 (load-dotfile "packages/init-powerline.el")
 (load-dotfile "packages/init-multi-term.el")
+(load-dotfile "packages/init-ace-jump.el")
 
 ;; Programming
 (load-dotfile "settings/init-ruby.el")
