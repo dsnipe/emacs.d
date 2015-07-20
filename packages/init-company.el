@@ -2,7 +2,7 @@
 	:defer 2
 	:init
 	(progn 
-		(setq company-idle-delay 0.5
+		(setq company-idle-delay 0
 					company-echo-delay 0
 					company-begin-commands '(self-insert-command)
 					company-dabbrev-downcase nil

@@ -25,7 +25,6 @@
 (depends-on "evil-leader")
 (depends-on "evil-nerd-commenter")
 (depends-on "evil-smartparens")
-(depends-on "evil-snipe")
 (depends-on "evil-surround")
 (depends-on "evil-visual-mark-mode")
 (depends-on "evil-visualstar")

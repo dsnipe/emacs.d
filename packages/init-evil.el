@@ -32,11 +32,7 @@
 										"e"  'find-file
 										"p"  'projectile-find-file
 										"w"  'save-buffer
-										","  'switch-to-previous-buffer
-										"ms" 'magit-status
-										"ml" 'magit-log
-										"mb" 'magit-branch-manager
-										"mp" 'magit-push)
+										","  'switch-to-previous-buffer)
 		(evil-leader/set-key-for-mode 'emacs-lisp-mode "E" 'eval-buffer)
 
 		;; Visual moving
@@ -146,8 +142,3 @@
 (use-package evil-visualstar
 	:config (global-evil-visualstar-mode))
 
-(use-package evil-snipe
-	:config
-	(evil-snipe-mode 1)
-	;; (evil-snipe-override-mode 1)
-	)
