@@ -8,5 +8,4 @@
 		:group 'alchemist-buffer)
 	(defface alchemist-buffer--failed-face '((t (:foreground "red" )))
 		"Customize buffer face for alchemist mode"
-		:group 'alchemist-buffer)
-	)
+		:group 'alchemist-buffer))

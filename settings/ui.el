@@ -4,11 +4,10 @@
 ;; Add /themes directory for storing custom themes
 ;; Themes and theme customizations
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-;; (load-theme 'nice t)
-(load-theme 'monokai t)
-
-;; (unless window-system
-		;; (set-face-attribute 'default nil :background "unspecific-bg"))
+(if window-system
+		(load-theme 'Amelie t)
+		(load-theme 'monokai t))
+;; (set-face-attribute 'default nil :background "unspecific-bg"))
 
 ;; Setup my favorite fonts
 (set-face-attribute 'default nil :family "Source Code Pro" :height 150 :weight 'normal)
@@ -46,7 +45,7 @@
 (use-package highlight-thing
 	:init
 	(defface highlight-thing
-		'((t (:background "color-236")))
+		'((t (:background "#696969")))
 		"Face that is used to highlight things."
 		:group 'highlight-thing)
 	:config

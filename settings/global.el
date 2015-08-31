@@ -20,6 +20,7 @@
 			`((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
 				`((".*" ,temporary-file-directory t)))
+(setq create-lockfiles nil) ;; disable lockfile .#<filename>
 
 ;; Startup screen
 (setq-default inhibit-startup-buffer-menu nil
@@ -28,17 +29,12 @@
               initial-scratch-message     nil
               initial-major-mode          'fundamental-mode)
 																				;
-(setq create-lockfiles nil) ;; disable lockfile .#<filename>
 
 ;; ENABLE save sessions
 (setq desktop-save-mode 1)
 
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
-
-(use-package yaml
-	:config
-	(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode)))
 
 ;; I want underscores as part of word in all modes
 (modify-syntax-entry (string-to-char "_") "w" (standard-syntax-table))
@@ -49,6 +45,13 @@
 (modify-syntax-entry (string-to-char "_") "w" ruby-mode-syntax-table)
 (modify-syntax-entry (string-to-char "_") "w" elixir-mode-syntax-table)
 ;; (modify-syntax-entry (string-to-char "_") "w" coffee-mode-syntax-table)
+ 
+;; Not toolbar and menu-bar
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+
+(fset 'yes-or-no-p 'y-or-n-p)
 
 (defadvice save-buffer (before save-buffer-always activate)
   "always save buffer"
@@ -74,32 +77,6 @@
 (global-set-key (kbd "M-RET") 'new-line-without-break)
 (global-set-key (kbd "M-S-RET") 'new-above-line) ;; not work in terminal
 
-(use-package move-text
-	:bind
-	(("M-S-<up>" . move-text-up)
-	 ("M-S-<down>" . move-text-down)))
-
-;; Show and create matching parens automaticaly
-;; (show-paren-mode t)
-;; (use-package popwin
-;;   :config
-;;     (popwin-mode t))
-
-(use-package zoom-window
-	:config
-	(define-prefix-command 'ctrl-w-map)
-	(global-set-key (kbd "C-w") 'ctrl-w-map)
-	(define-key ctrl-w-map (kbd "z") 'zoom-window-zoom))
-
-(global-set-key (kbd "M-s") 'save-buffer) ;; OSx style save
- 
-;; Not toolbar and menu-bar
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-
-(fset 'yes-or-no-p 'y-or-n-p)
-
 ;; Fix problem with zsh, disbale company and yas in terminal
 (setq system-uses-terminfo nil)
 (add-hook 'term-mode-hook (lambda()
@@ -108,13 +85,13 @@
                 (yas-minor-mode -1)))
 (add-hook 'term-mode-hook (lambda()
 														(company-mode -1)))
+
 ;; Set locales
 (setq locale-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
-
 
 ;; Copy/Paste from OSX 
 (defun copy-from-osx ()
@@ -140,12 +117,41 @@
                               (interactive)
                               (scroll-up 1)))
   (defun track-mouse (e))
-  (setq mouse-sel-mode t)
-	)
+  (setq mouse-sel-mode t))
 
-(defun switch-to-minibuffer-window ()
-  "switch to minibuffer window (if active)"
-  (interactive)
-  (when (active-minibuffer-window)
-    (select-window (active-minibuffer-window))))
-(global-set-key (kbd "<f7>") 'switch-to-minibuffer-window)
+
+;;;;;;;;;;;;;;
+;; Packages ;;
+;;;;;;;;;;;;;;
+
+(use-package smart-tab
+	:config
+	(global-smart-tab-mode 1))
+
+
+(use-package move-text
+	:bind
+	(("M-S-<up>" . move-text-up)
+	 ("M-S-<down>" . move-text-down)))
+
+;; Show and create matching parens automaticaly
+;; (show-paren-mode t)
+;; (use-package popwin
+;;   :config
+;;     (popwin-mode t))
+
+(use-package zoom-window
+	:config
+	(define-prefix-command 'ctrl-w-map)
+	(global-set-key (kbd "C-w") 'ctrl-w-map)
+	(define-key ctrl-w-map (kbd "z") 'zoom-window-zoom))
+
+(global-set-key (kbd "M-s") 'save-buffer) ;; OSx style save
+ 
+(use-package yaml-mode
+	:config
+	(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode)))
+
+(use-package expand-region
+	:config (global-set-key (kbd "C-=") 'er/expand-region))
+

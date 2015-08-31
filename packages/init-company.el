@@ -16,8 +16,8 @@
 
 		;; Disable Alchemist backend
 		(add-hook 'alchemist-mode-hook
-				`(lambda ()
-						(setq company-backends (delete 'alchemist-company company-backends))))
+							`(lambda ()
+								 (setq company-backends (delete 'alchemist-company company-backends))))
 		
 		(defun check-expansion ()
 			(save-excursion
@@ -93,13 +93,13 @@
 		
 		;; Add yasnippet support for all company backends
 		(defvar company-mode/enable-yas t
-				"Enable yasnippet for all backends.")
+			"Enable yasnippet for all backends.")
 
 		(defun company-mode/backend-with-yas (backend)
-				(if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-						backend
-						(append (if (consp backend) backend (list backend))
-																'(:with company-yasnippet))))
+			(if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+					backend
+				(append (if (consp backend) backend (list backend))
+								'(:with company-yasnippet))))
 		(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 		))
 

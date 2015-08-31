@@ -1,7 +1,6 @@
 (use-package multiple-cursors
-	:bind
-	("C-S-<down>" . mc/mmlte--down)
-	("C->" . mc/mark-next-symbol-like-this)
 	:config
 	(multiple-cursors-mode t)
-	(global-set-key (kbd "C-S-j") 'mc/mmlte--down))
+	(global-set-key (kbd "C-S-j") 'mc/mmlte--down)
+	;; TODO: Enter in insert mode, and then make action
+	(global-set-key (kbd "C-S-D") 'mc/mark-next-like-this))

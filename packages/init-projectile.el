@@ -1,8 +1,8 @@
 (use-package projectile
 	;; :commands helm-projectile
 	:init
-	(progn
-		(setq projectile-enable-caching t))
+	;; (progn
+	;; 	(setq projectile-enable-caching t))
 	:config
 	(progn
 		(projectile-mode t)
@@ -14,7 +14,6 @@
 										"gemfile.rb" "requirements.txt" "package.json" "gulpfile.js" "Gruntfile.js" "bower.json" "composer.json"
 										"Cargo.toml" "mix.exs" "README.md" "Cask")))
 		(projectile-global-mode)
-		;; (setq projectile-completion-system 'grizzl)
 		;(helm-projectile-on)
 
 		;; Show projectile lists by most recently active
@@ -25,6 +24,8 @@
 		;; Key bindings
 		(global-unset-key (kbd "M-p"))
 		(global-set-key (kbd "M-p") 'projectile-find-file)
+		(global-unset-key (kbd "C-c b"))
+		(global-set-key (kbd "C-c b") 'projectile-switch-to-buffer)
 		(dolist (map '(evil-motion-state-map
 										evil-normal-state-map
 										evil-visual-state-map))
@@ -38,4 +39,6 @@
 	:defer 1
 	:config
 	(persp-mode)
-	(define-key projectile-mode-map (kbd "M-S-p") 'projectile-persp-switch-project))
+	;; (set-default persp-show-modestring t)
+	;; (define-key projectile-mode-map (kbd "C-c p s") 'projectile-persp-switch-project)
+	)
