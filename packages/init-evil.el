@@ -142,3 +142,6 @@
 (use-package evil-visualstar
 	:config (global-evil-visualstar-mode))
 
+;; (use-package evil-smartparens
+;;   :config
+;;   (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))

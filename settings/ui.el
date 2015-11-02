@@ -13,6 +13,10 @@
 (set-face-attribute 'default nil :family "Source Code Pro" :height 150 :weight 'normal)
 (setq mac-allow-anti-aliasing nil)  ;; turn off anti-aliasing
 ;;(set-face-attribute 'helm-candidate-number nil :background "#2875d7" :foreground "#fff")
+;;
+;; remember the cursor position of files when reopening them
+(setq save-place-file "~/.emacs.d/tmp/saveplace")
+(setq-default save-place t)
 
 (global-linum-mode t)
 (setq-default truncate-lines t)
@@ -24,10 +28,6 @@
 		(propertize (format (format "%%%dd " w) line) 'face 'linum)))
 (setq linum-format 'linum-format-func)
 ;; use customized linum-format: add a addition space after the line number
-
-;; remember the cursor position of files when reopening them
-(setq save-place-file "~/.emacs.d/tmp/saveplace")
-(setq-default save-place t)
 
 ;; show the column number in the status bar
 (column-number-mode t)
@@ -77,4 +77,7 @@
 
 (add-hook 'after-make-frame-functions (lambda (frame) (my-evil-terminal-cursor-change)))
 (my-evil-terminal-cursor-change)
+
+;; activate color madnes in code
+(add-hook 'after-init-hook 'global-color-identifiers-mode)
 

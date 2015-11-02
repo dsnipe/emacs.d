@@ -53,6 +53,8 @@
 (load-dotfile "packages/init-powerline.el")
 (load-dotfile "packages/init-multi-term.el")
 (load-dotfile "packages/init-ace-jump.el")
+(load-dotfile "packages/init-web-mode.el")
+(load-dotfile "packages/init-hideshow.el")
 
 ;; Programming
 (load-dotfile "settings/init-ruby.el")
@@ -68,7 +70,7 @@
 (load-dotfile "settings/osx.el")
 (load-dotfile "settings/init-ido.el")
 (load-dotfile "settings/init-smex.el")
-
+;; 
 ;; Load cutom files
 (load-dotfile "settings/prodigy_services.el")
 

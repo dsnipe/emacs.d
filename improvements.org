@@ -1,0 +1,46 @@
+Emacs stuff:
+===========
+* New thing
+** TODO Helm mode
+Additional packages:
+*** helm-flx - https://github.com/emacs-helm/helm/issues/145 
+*** 
+** TODO blank-mode
+** TODO [#A] Better git gutter
+** TODO Install session manager - http://desktopaid.sourceforge.net/
+* Bugs
+** TODO [#A] Tab not working in Magit
+   https://groups.google.com/forum/#!topic/smart-snippet/kmHuwm8SIzA
+   https://gist.github.com/rmm5t/215930
+   https://gist.github.com/mwilliams/215461
+** TODO Freezing some time
+* Lear
+** Magit
+*** [#B] History manipulations
+** Dired
+   Also learn about Dired+
+** TODO Org-mode
+   - [[http://orgmode.org/worg/org-tutorials/org4beginners.html][Basic]]
+   - [[http://orgmode.org/manual/Checkboxes.html][checkboxes]]
+   - [[https://github.com/edwtjo/evil-org-mode][evil-org-mode]]
+** Bookmarks
+   Maybe install Bookmarks+
+* What I can do better
+** TODO [0/3] [#A] Tab problems with company-mode  
+*** TODO line-wraps for text modes (markdown, org, RST)
+*** TODO shouldn't work in evil normal mode
+*** TODO sometimes autocomplete unexpected YAS snippet, but should dabrev
+** TODO Mode line
+
+*** TODO [#C] position sight in right
+*** TODO [#C] delete proccessor power
+*** TODO [#C] remove 'Mail'
+*** TODO show only current project in Projectile
+** TODO [#B] CTags (Etags)
+Info: http://habrahabr.ru/post/265635/
+** TODO [#B] Dired tricks: [[http://stackoverflow.com/questions/18987621/how-to-restore-anything-like-behavior-for-tab-autocompletin-helm][StackOverflow]] 
+** TODO [#A] New Mode-line https://github.com/dbordak/telephone-line
+** TODO [#A] Clear unused packages
+
+* [#A] Don'n forget!
+  [[https://github.com/ankurdave/color-identifiers-mode][Color Identifiers Mode]]

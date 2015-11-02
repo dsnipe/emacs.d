@@ -25,7 +25,7 @@
 ;; Startup screen
 (setq-default inhibit-startup-buffer-menu nil
               inhibit-startup-screen        t
-              initial-buffer-choice       nil
+              initial-buffer-choice         t
               initial-scratch-message     nil
               initial-major-mode          'fundamental-mode)
 																				;
@@ -33,6 +33,10 @@
 ;; ENABLE save sessions
 (setq desktop-save-mode 1)
 
+(setq-default indent-tabs-mode nil)
+
+
+;; Extract shell envs
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
@@ -65,17 +69,18 @@
 	"Move to line above current"
 	(interactive)
 	(beginning-of-line)
-	(new-line-and-indent))
+	(default-indent-new-line)
+  (forward-line -1))
 
 (defun new-line-without-break ()
 	"Move to end of line and insert new line"
 	(interactive)
 	(let ((oldpos (point)))
 		(end-of-line)
-		(comment-indent-new-line)))
+		(default-indent-new-line)))
 
-(global-set-key (kbd "M-RET") 'new-line-without-break)
-(global-set-key (kbd "M-S-RET") 'new-above-line) ;; not work in terminal
+(global-set-key (kbd "M-S-<return>") 'new-above-line) ;; not work in terminal
+(global-set-key (kbd "M-<return>") 'new-line-without-break)
 
 ;; Fix problem with zsh, disbale company and yas in terminal
 (setq system-uses-terminfo nil)
@@ -119,6 +124,7 @@
   (defun track-mouse (e))
   (setq mouse-sel-mode t))
 
+(global-set-key (kbd "M-s") 'save-buffer) ;; OSx style save
 
 ;;;;;;;;;;;;;;
 ;; Packages ;;
@@ -146,8 +152,61 @@
 	(global-set-key (kbd "C-w") 'ctrl-w-map)
 	(define-key ctrl-w-map (kbd "z") 'zoom-window-zoom))
 
-(global-set-key (kbd "M-s") 'save-buffer) ;; OSx style save
- 
+;; 
+(use-package dired-efap
+	:config
+	(define-key dired-mode-map [f2] 'dired-efap))
+
+;; (use-package polymode
+;;   :config
+;;   (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode)))
+
+(use-package mmm-mode
+  :init
+  (defun my-mmm-markdown-auto-class (lang &optional submode)
+    "Define a mmm-mode class for LANG in `markdown-mode' using SUBMODE.
+If SUBMODE is not provided, use `LANG-mode' by default."
+    (let ((class (intern (concat "markdown-" lang)))
+          (submode (or submode (intern (concat lang "-mode"))))
+          (front (concat "^```" lang "[\n\r]+"))
+          (back "^```"))
+      (mmm-add-classes (list (list class :submode submode :front front :back back)))
+      (mmm-add-mode-ext-class 'markdown-mode nil class)))
+
+  ;; Mode names that derive directly from the language name
+  (mapc 'my-mmm-markdown-auto-class
+        '("awk" "bibtex" "c" "cpp" "css" "html" "js" "lisp" "makefile"
+          "markdown" "python" "r" "ruby" "sql" "json" "xml"))
+  :config
+  (setq mmm-parse-when-idle 't)
+  (global-set-key (kbd "C-c m p") 'mmm-parse-buffer))
+
+(eval-after-load 'dired
+  ;; Create file in Dired, using _
+  '(progn
+     (define-key dired-mode-map (kbd "_") 'my-dired-create-file)
+     (defun my-dired-create-file (file)
+       "Create a file called FILE.
+If FILE already exists, signal an error."
+       (interactive
+        (list (read-file-name "Create file: " (dired-current-directory))))
+       (let* ((expanded (expand-file-name file))
+              (try expanded)
+              (dir (directory-file-name (file-name-directory expanded)))
+              new)
+         (if (file-exists-p expanded)
+             (error "Cannot create file %s: file exists" expanded))
+         ;; Find the topmost nonexistent parent dir (variable `new')
+         (while (and try (not (file-exists-p try)) (not (equal new try)))
+           (setq new try
+                 try (directory-file-name (file-name-directory try))))
+         (when (not (file-exists-p dir))
+           (make-directory dir t))
+         (write-region "" nil expanded t)
+         (when new
+           (dired-add-file new)
+           (dired-move-to-filename))))))
+
 (use-package yaml-mode
 	:config
 	(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode)))

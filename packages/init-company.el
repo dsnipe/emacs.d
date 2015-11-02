@@ -85,10 +85,8 @@
 
 		(define-key yas-minor-mode-map [tab] nil)
 		(define-key yas-minor-mode-map (kbd "TAB") nil)
-
-		(define-key yas-keymap [tab] 'tab-complete-or-next-field)
 		(define-key yas-keymap (kbd "TAB") 'tab-complete-or-next-field)
-		(define-key yas-keymap [(control tab)] 'yas-next-field)
+		(define-key yas-keymap (kbd "C-n") 'yas-next-field)
 		(define-key yas-keymap (kbd "C-g") 'abort-company-or-yas)
 		
 		;; Add yasnippet support for all company backends

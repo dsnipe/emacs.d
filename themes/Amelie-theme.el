@@ -53,6 +53,7 @@
       (amelie-green "#50d42b")
       (amelie-green-1 "#54ab54")
       (amelie-cyan "#00eaff")
+      (amelie-cyan-1 "#405063") ;; #2b6172
       (amelie-blue "#01aafe")
       (amelie-magenta "#99aFfF"))
   (custom-theme-set-faces
@@ -60,11 +61,14 @@
    `(default ((t (:background ,amelie-bg :foreground ,amelie-fg))))
 
    ;; Editor
-   `(cursor ((t (:background ,amelie-fg :foreground ,amelie-bg))))
+   `(cursor ((t (:background ,amelie-yellow :foreground ,amelie-bg))))
    `(highlight ((t (:background ,amelie-bg-hi))))
    `(region ((t (:background ,amelie-bg-hi :foreground ,amelie-fg-hi))))
    `(header-line ((t (:foreground ,amelie-yellow
                                   :box (:line-width -1 :style released-button)))))
+   `(hl-line ((t (:background ,amelie-cyan-1 :inherit t))))
+   ;; `(hl-line-face ((t (:background ,monokai-hl-line :inherit t))))
+
    ;; UI
    `(menu ((t (:foreground ,amelie-fg :background ,amelie-bg))))
    `(mode-line ((t (:foreground ,amelie-green-1
@@ -78,7 +82,7 @@
 
    ;; font lock
    `(font-lock-comment-face ((t (:foreground ,amelie-grey-2))))
-   `(font-lock-comment-delimiter-face ((t (:foreground ,amelie-grey-3))))
+   `(font-lock-comment-delimiter-face ((t (:foreground ,amelie-grey-2))))
    `(font-lock-constant-face ((t (:foreground ,amelie-cyan))))
    `(font-lock-builtin-face ((t (:foreground ,amelie-cyan))))
    `(font-lock-function-name-face ((t (:foreground ,amelie-blue))))
@@ -91,6 +95,17 @@
    ;; perspective
    `(persp-selected-face
      ((t (:foreground ,amelie-blue ))))
+
+   ;; company-mode
+   `(company-tooltip ((t (:background ,amelie-bg-hi :foreground ,amelie-cyan))))
+   `(company-tooltip-selection ((t (:background ,amelie-cyan-1 :foreground ,amelie-cyan))))
+   `(company-tooltip-mouse ((t (:background ,amelie-cyan-1 :foreground ,amelie-cyan))))
+   `(company-tooltip-common ((t (:foreground ,amelie-yellow+1 :underline t :background ,amelie-bg-hi))))
+   `(company-tooltip-common-selection ((t (:foreground ,amelie-yellow+1 :underline t :background ,amelie-cyan-1))))
+   `(company-preview ((t (:background ,amelie-bg :foreground ,amelie-yellow+1))))
+   `(company-preview-common ((t (:foreground ,amelie-yellow+1 :background ,amelie-bg))))
+   `(company-scrollbar-bg ((t (:background ,amelie-bg-hi))))
+   `(company-scrollbar-fg ((t (:background ,amelie-orange-1))))
 
 	 ))
 
