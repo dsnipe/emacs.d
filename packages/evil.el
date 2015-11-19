@@ -35,6 +35,9 @@
 										","  'switch-to-previous-buffer)
 		(evil-leader/set-key-for-mode 'emacs-lisp-mode "E" 'eval-buffer)
 
+    ;; Set Insert mode as emacs mode
+    (defalias 'evil-insert-state 'evil-emacs-state)
+
 		;; Visual moving
 		(defun dmt/shift-left-visual ()
 			"Shift left and restore visual selection."
@@ -70,10 +73,10 @@
 		(define-key evil-normal-state-map (kbd "<backtab>") 'dmt/shift-left-normal)
 		
 		;; Use C-HJKL to move on windows
-		(global-set-key (kbd "C-h") 'windmove-left)
-		(global-set-key (kbd "C-l") 'windmove-right)
-		(global-set-key (kbd "C-j") 'windmove-down)
-		(global-set-key (kbd "C-k") 'windmove-up)
+		;; (global-set-key (kbd "C-h") 'windmove-left)
+		;; (global-set-key (kbd "C-l") 'windmove-right)
+		;; (global-set-key (kbd "C-j") 'windmove-down)
+		;; (global-set-key (kbd "C-k") 'windmove-up)
 
 		;; Make ";" behave like ":" in normal mode
 		(define-key evil-normal-state-map (kbd ";") 'evil-ex)
@@ -91,7 +94,7 @@
 		(define-key evil-insert-state-map "\C-e" 'evil-end-of-line)
 
 		;; Yank whole buffer
-		(define-key evil-normal-state-map (kbd "gy") (kbd "gg v G y"))
+		(define-key evil-normal-state-map (kbd "gy") (kbd "m h gg v G y ` h"))
 
 		(defun fix-underscore-word ()
 		(modify-syntax-entry ?_ "w"))
@@ -113,8 +116,12 @@
 		(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
 		(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 		(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+    ;; Esc to normal mode from emacs mode
+    (define-key evil-emacs-state-map [escape] 'evil-normal-state)
 
-		;; Define `kj` as <ESC>
+		;; Define `kj` as <ESC> and set it for emacs-mode
+    (key-chord-define evil-emacs-state-map "kj" 'evil-normal-state)
+    (define-key evil-emacs-state-map "k" #'cofi/maybe-exit)
 		(key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 		(define-key evil-insert-state-map "k" #'cofi/maybe-exit)
 		(evil-define-command cofi/maybe-exit ()

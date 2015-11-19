@@ -5,12 +5,6 @@
 (use-package flycheck
 	:commands global-flycheck-mode
 	:defer 2
-	:init
-	(progn
-		(setq-default flycheck-check-syntax-automatically '(mode-enable save idle-change)
-					flycheck-completition-system 'ido
-					flycheck-highlighting-mode 'sexps
-					flycheck-disable-checkers '(html-tidy emacs-lisp-checkdoc)))
 	:config
 	(progn
 		(setq-default flycheck-check-syntax-automatically '(mode-enable save idle-change)
@@ -33,4 +27,5 @@
 ;       (setq flycheck-standard-error-navigation nil))
 
 (provide 'init-flycheck)
+
 ;;; init-flycheck.el ends here

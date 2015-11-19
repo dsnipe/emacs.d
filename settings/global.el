@@ -50,12 +50,10 @@
 (modify-syntax-entry (string-to-char "_") "w" elixir-mode-syntax-table)
 ;; (modify-syntax-entry (string-to-char "_") "w" coffee-mode-syntax-table)
  
-;; Not toolbar and menu-bar
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(global-auto-revert-mode t)
+(setq auto-revert-verbose nil)
 
 (defadvice save-buffer (before save-buffer-always activate)
   "always save buffer"

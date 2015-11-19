@@ -69,6 +69,7 @@
 (depends-on "multi-term")
 (depends-on "multiple-cursors")
 (depends-on "neotree")
+(depends-on "nodejs-repl")
 (depends-on "pallet")
 (depends-on "persp-projectile")
 (depends-on "perspective")

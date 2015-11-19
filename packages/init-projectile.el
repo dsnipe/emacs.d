@@ -24,6 +24,8 @@
 		;; Key bindings
 		(global-unset-key (kbd "M-p"))
 		(global-set-key (kbd "M-p") 'projectile-find-file)
+    (global-unset-key (kbd "M-t"))
+		(global-set-key (kbd "M-t") 'projectile-find-file)
 		(global-unset-key (kbd "C-c b"))
 		(global-set-key (kbd "C-c b") 'projectile-switch-to-buffer)
 		(dolist (map '(evil-motion-state-map
@@ -40,5 +42,4 @@
 	:config
 	(persp-mode)
 	;; (set-default persp-show-modestring t)
-	;; (define-key projectile-mode-map (kbd "C-c p s") 'projectile-persp-switch-project)
 	)

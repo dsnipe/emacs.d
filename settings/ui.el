@@ -1,7 +1,7 @@
-;; =============================================================================
-;; ui
-;; =============================================================================
-;; Add /themes directory for storing custom themes
+;;; ui.el --- Interface settings
+;;; Commentary: 
+;;; Code: 
+
 ;; Themes and theme customizations
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (if window-system
@@ -28,6 +28,14 @@
 		(propertize (format (format "%%%dd " w) line) 'face 'linum)))
 (setq linum-format 'linum-format-func)
 ;; use customized linum-format: add a addition space after the line number
+ 
+;; Not toolbar and menu-bar
+(when (functionp 'tool-bar-mdoe)
+  (tool-bar-mode -1))
+(when (functionp 'menu-bar-mode)
+  (menu-bar-mode -1))
+(when (functionp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
 
 ;; show the column number in the status bar
 (column-number-mode t)
@@ -37,8 +45,33 @@
 (setq blink-cursor-mode nil)
 ;; Make lines longer than 80 highlighted
 (setq whitespace-line-column 120) ;; limit line length
-(setq whitespace-style '(face lines-tail))
+(setq whitespace-style '(tabs newline space-mark
+                         tab-mark newline-mark
+                         face lines-tail))
+(setq whitespace-display-mappings
+      ;; all numbers are Unicode codepoint in decimal. e.g. (insert-char 182 1)
+      ;; 32 SPACE, 183 MIDDLE DOT
+      '((space-mark nil)
+        ;; 10 LINE FEED
+        ;;(newline-mark 10 [172 10])
+        (newline-mark nil)
+        ;; 9 TAB, MIDDLE DOT
+        (tab-mark 9 [183 9] [92 9])))
+(setq whitespace-global-modes '(not org-mode
+                                    eshell-mode
+                                    shell-mode
+                                    web-mode
+                                    log4j-mode
+                                    "Web"
+                                    dired-mode
+                                    emacs-lisp-mode
+                                    clojure-mode
+                                    lisp-mode))
 (global-whitespace-mode t)
+(diminish 'global-whitespace-mode "")
+
+(set-default 'indicate-empty-lines t)
+(setq show-trailing-whitespace t)
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
@@ -77,6 +110,8 @@
 
 (add-hook 'after-make-frame-functions (lambda (frame) (my-evil-terminal-cursor-change)))
 (my-evil-terminal-cursor-change)
+;; set bar cursor for evil-emacs mode
+(setq evil-emacs-state-cursor '(bar))
 
 ;; activate color madnes in code
 (add-hook 'after-init-hook 'global-color-identifiers-mode)

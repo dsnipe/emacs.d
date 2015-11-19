@@ -1,6 +1,6 @@
 ;;; init.el --- main config file
 ;;; Commentary:
-;;; Code: 
+;;; Code:
 
 ;; Package Manager
 (require 'cask "/usr/local/share/emacs/site-lisp/cask.el")
@@ -8,21 +8,16 @@
 (require 'pallet)
 (pallet-mode t)
 
-;; Init user-package 
+;; Init user-package
 (eval-when-compile
 	(require 'use-package))
 (require 'diminish)
-(require 'bind-key) 
+(require 'bind-key)
 ;; Create a variable to store the path to this dotfile directory
 ;; (Usually ~/.emacs.d)
 (setq dotfiles-dir (file-name-directory
 		    (or (buffer-file-name) load-file-name)))
 
-;; Create variables to store the path to this dotfile dir's lib etc and tmp directories
-;; (setq dotfiles-settings-dir (concat dotfiles-dir "settings/"))
-;; (setq dotfiles-init-dir (concat dotfiles-dir "packages"))
-;; (setq dotfiles-tmp-dir (concat dotfiles-dir "tmp/"))
-;; 
 ;; Create helper functions for loading dotfile paths and files
 (defun add-dotfile-path (p)
   (add-to-list 'load-path (concat dotfiles-dir p)))
@@ -36,7 +31,7 @@
 (add-dotfile-path "lib/")
 
 ;; load packages inits
-(load-dotfile "packages/init-evil.el")
+(load-dotfile "packages/evil.el")
 (load-dotfile "packages/init-key-chord.el")
 (load-dotfile "packages/init-neotree.el")
 (load-dotfile "packages/init-projectile.el")
@@ -70,7 +65,7 @@
 (load-dotfile "settings/osx.el")
 (load-dotfile "settings/init-ido.el")
 (load-dotfile "settings/init-smex.el")
-;; 
+;;
 ;; Load cutom files
 (load-dotfile "settings/prodigy_services.el")
 
@@ -103,4 +98,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(mode-line ((t (:background "grey75" :foreground "black")))))
- 

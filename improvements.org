@@ -14,7 +14,7 @@ Additional packages:
    https://gist.github.com/rmm5t/215930
    https://gist.github.com/mwilliams/215461
 ** TODO Freezing some time
-* Lear
+* Learn
 ** Magit
 *** [#B] History manipulations
 ** Dired
@@ -43,4 +43,8 @@ Info: http://habrahabr.ru/post/265635/
 ** TODO [#A] Clear unused packages
 
 * [#A] Don'n forget!
-  [[https://github.com/ankurdave/color-identifiers-mode][Color Identifiers Mode]]
+** DONE [[https://github.com/ankurdave/color-identifiers-mode][Color Identifiers Mode]]
+** DONE Enable Autorevert!
+** DONE Set evli-emacs-mode instead of insert mode
+   rebind esc to work with it and other bindings to insert mode
+** TODO Skip modified files when do any commands
