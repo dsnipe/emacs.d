@@ -13,58 +13,39 @@
 	(require 'use-package))
 (require 'diminish)
 (require 'bind-key)
+
 ;; Create a variable to store the path to this dotfile directory
-;; (Usually ~/.emacs.d)
 (setq dotfiles-dir (file-name-directory
 		    (or (buffer-file-name) load-file-name)))
-
 ;; Create helper functions for loading dotfile paths and files
 (defun add-dotfile-path (p)
   (add-to-list 'load-path (concat dotfiles-dir p)))
-
 (defun load-dotfile (f)
   (load-file (concat dotfiles-dir f)))
 
 ;; Ensure the necessary directories is on the load path
-(add-dotfile-path "settings/")
-(add-dotfile-path "packages/")
+;; (add-dotfile-path "settings/")
 (add-dotfile-path "lib/")
 
 ;; load packages inits
-(load-dotfile "packages/evil.el")
-(load-dotfile "packages/init-key-chord.el")
-(load-dotfile "packages/init-neotree.el")
-(load-dotfile "packages/init-projectile.el")
-(load-dotfile "packages/init-flycheck.el")
-(load-dotfile "packages/init-nerd-commenter.el")
-(load-dotfile "packages/init-smartparens.el")
-(load-dotfile "packages/init-multiple-cursors.el")
-(load-dotfile "packages/init-magit.el")
-(load-dotfile "packages/init-git-gutter.el")
-(load-dotfile "packages/init-yasnippet.el")
-(load-dotfile "packages/init-company.el")
-(load-dotfile "packages/init-emamux.el")
-;; (load-dotfile "packages/init-helm.el")
-(load-dotfile "packages/init-powerline.el")
-(load-dotfile "packages/init-multi-term.el")
-(load-dotfile "packages/init-ace-jump.el")
-(load-dotfile "packages/init-web-mode.el")
-(load-dotfile "packages/init-hideshow.el")
+(load-dotfile "settings/evil-mode.el")
+(load-dotfile "settings/frontend-prog-modes.el")
+(load-dotfile "settings/backend-prog-modes.el")
+(load-dotfile "settings/packages.el")
+(load-dotfile "settings/prog-mode-packages.el")
+(load-dotfile "settings/ido-smex.el")
+(load-dotfile "settings/init-projectile.el")
 
-;; Programming
-(load-dotfile "settings/init-ruby.el")
-(load-dotfile "settings/init-elixir.el")
-
+(load-dotfile "settings/init-yasnippet.el")
+(load-dotfile "settings/init-company.el")
+;; (load-dotfile "settings/init-helm.el")
+(load-dotfile "settings/init-ace-jump.el")
 ;; Load custom libs
 (load-dotfile "lib/ido-other-window.el") ;; Open from IDO to slit window
 (load-dotfile "lib/iterm2-spec.el") ;; special key decodes
-
 ;; Load settings
 (load-dotfile "settings/global.el")
 (load-dotfile "settings/ui.el")
-(load-dotfile "settings/osx.el")
-(load-dotfile "settings/init-ido.el")
-(load-dotfile "settings/init-smex.el")
 ;;
 ;; Load cutom files
 (load-dotfile "settings/prodigy_services.el")

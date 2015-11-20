@@ -6,10 +6,13 @@ Additional packages:
 *** helm-flx - https://github.com/emacs-helm/helm/issues/145 
 *** 
 ** TODO blank-mode
-** TODO [#A] Better git gutter
+** DONE [#A] Better git gutter
 ** TODO Install session manager - http://desktopaid.sourceforge.net/
+** TODO projectile-rails - learn and implement
+** Move to Ivy mode instead of ace-jump
 * Bugs
 ** TODO [#A] Tab not working in Magit
+   Might be related to `tab-indent-or-complete` in company settings
    https://groups.google.com/forum/#!topic/smart-snippet/kmHuwm8SIzA
    https://gist.github.com/rmm5t/215930
    https://gist.github.com/mwilliams/215461
@@ -36,15 +39,14 @@ Additional packages:
 *** TODO [#C] delete proccessor power
 *** TODO [#C] remove 'Mail'
 *** TODO show only current project in Projectile
-** TODO [#B] CTags (Etags)
-Info: http://habrahabr.ru/post/265635/
 ** TODO [#B] Dired tricks: [[http://stackoverflow.com/questions/18987621/how-to-restore-anything-like-behavior-for-tab-autocompletin-helm][StackOverflow]] 
 ** TODO [#A] New Mode-line https://github.com/dbordak/telephone-line
+** TODO [#B] CTags (Etags)
+Info: http://habrahabr.ru/post/265635/
 ** TODO [#A] Clear unused packages
-
 * [#A] Don'n forget!
+** TODO Skip modified files when do any commands
 ** DONE [[https://github.com/ankurdave/color-identifiers-mode][Color Identifiers Mode]]
 ** DONE Enable Autorevert!
 ** DONE Set evli-emacs-mode instead of insert mode
    rebind esc to work with it and other bindings to insert mode
-** TODO Skip modified files when do any commands

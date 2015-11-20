@@ -10,16 +10,16 @@
 
 ;; Backup settings
 (setq version-control t
-			kept-new-versions 5
-			kept-old-versions 0
-			delete-old-versions t)
+      kept-new-versions 5
+      kept-old-versions 0
+      delete-old-versions t)
 (setq backup-directory-alist '(("". "~/.emacs.d/.backups" )))
 
 ;; Store autosave files in system temp
 (setq backup-directory-alist
-			`((".*" . ,temporary-file-directory)))
+      `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
-				`((".*" ,temporary-file-directory t)))
+      `((".*" ,temporary-file-directory t)))
 (setq create-lockfiles nil) ;; disable lockfile .#<filename>
 
 ;; Startup screen
@@ -28,7 +28,6 @@
               initial-buffer-choice         t
               initial-scratch-message     nil
               initial-major-mode          'fundamental-mode)
-																				;
 
 ;; ENABLE save sessions
 (setq desktop-save-mode 1)
@@ -96,6 +95,18 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
+;; mac specific settings
+(when (eq system-type 'darwin) 
+;; (setq mac-option-modifier 'alt)
+	;; (setq mac-command-modifier 'meta)
+	(global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
+	)
+
+;; (unless window-system
+;; 	(setq mac-command-modifier 'meta))
+
+(setq ns-function-modifier 'super)
+
 ;; Copy/Paste from OSX 
 (defun copy-from-osx ()
 	(shell-command-to-string "pbpaste"))
@@ -124,60 +135,9 @@
 
 (global-set-key (kbd "M-s") 'save-buffer) ;; OSx style save
 
-;;;;;;;;;;;;;;
-;; Packages ;;
-;;;;;;;;;;;;;;
-
-(use-package smart-tab
-	:config
-	(global-smart-tab-mode 1))
-
-
-(use-package move-text
-	:bind
-	(("M-S-<up>" . move-text-up)
-	 ("M-S-<down>" . move-text-down)))
-
-;; Show and create matching parens automaticaly
-;; (show-paren-mode t)
-;; (use-package popwin
-;;   :config
-;;     (popwin-mode t))
-
-(use-package zoom-window
-	:config
-	(define-prefix-command 'ctrl-w-map)
-	(global-set-key (kbd "C-w") 'ctrl-w-map)
-	(define-key ctrl-w-map (kbd "z") 'zoom-window-zoom))
-
-;; 
-(use-package dired-efap
-	:config
-	(define-key dired-mode-map [f2] 'dired-efap))
-
-;; (use-package polymode
-;;   :config
-;;   (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode)))
-
-(use-package mmm-mode
-  :init
-  (defun my-mmm-markdown-auto-class (lang &optional submode)
-    "Define a mmm-mode class for LANG in `markdown-mode' using SUBMODE.
-If SUBMODE is not provided, use `LANG-mode' by default."
-    (let ((class (intern (concat "markdown-" lang)))
-          (submode (or submode (intern (concat lang "-mode"))))
-          (front (concat "^```" lang "[\n\r]+"))
-          (back "^```"))
-      (mmm-add-classes (list (list class :submode submode :front front :back back)))
-      (mmm-add-mode-ext-class 'markdown-mode nil class)))
-
-  ;; Mode names that derive directly from the language name
-  (mapc 'my-mmm-markdown-auto-class
-        '("awk" "bibtex" "c" "cpp" "css" "html" "js" "lisp" "makefile"
-          "markdown" "python" "r" "ruby" "sql" "json" "xml"))
-  :config
-  (setq mmm-parse-when-idle 't)
-  (global-set-key (kbd "C-c m p") 'mmm-parse-buffer))
+;; Check spell
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 (eval-after-load 'dired
   ;; Create file in Dired, using _
@@ -205,10 +165,4 @@ If FILE already exists, signal an error."
            (dired-add-file new)
            (dired-move-to-filename))))))
 
-(use-package yaml-mode
-	:config
-	(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode)))
-
-(use-package expand-region
-	:config (global-set-key (kbd "C-=") 'er/expand-region))
 

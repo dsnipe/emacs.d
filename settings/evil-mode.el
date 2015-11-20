@@ -22,7 +22,8 @@
 	
 	:config
 	(progn
-		(evil-mode t)
+		;; (evil-mode t)
+    (add-hook 'prog-mode-hook 'turn-on-evil-mode)
 		(global-evil-leader-mode)
 
 		(evil-leader/set-leader "<SPC>")
@@ -73,10 +74,10 @@
 		(define-key evil-normal-state-map (kbd "<backtab>") 'dmt/shift-left-normal)
 		
 		;; Use C-HJKL to move on windows
-		;; (global-set-key (kbd "C-h") 'windmove-left)
-		;; (global-set-key (kbd "C-l") 'windmove-right)
-		;; (global-set-key (kbd "C-j") 'windmove-down)
-		;; (global-set-key (kbd "C-k") 'windmove-up)
+		(global-set-key (kbd "C-h") 'windmove-left)
+		(global-set-key (kbd "C-l") 'windmove-right)
+		(global-set-key (kbd "C-j") 'windmove-down)
+		(global-set-key (kbd "C-k") 'windmove-up)
 
 		;; Make ";" behave like ":" in normal mode
 		(define-key evil-normal-state-map (kbd ";") 'evil-ex)
