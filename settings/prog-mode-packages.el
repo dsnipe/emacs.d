@@ -15,6 +15,7 @@
     
 		(sp-local-pair 'css-mode "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
     (sp-local-pair 'js2-mode "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+    (sp-local-pair 'js2-jsx-mode "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
 
     (defun my-create-newline-and-enter-sexp (&rest _ignored)
       "Open a new brace or bracket expression, with relevant newlines and indent. "
@@ -35,22 +36,32 @@
 (use-package flycheck
 	:commands global-flycheck-mode
 	:defer 2
+  :init
+  (progn
+    (when (display-graphic-p (selected-frame))
+      '(custom-set-variables
+        '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages))))
 	:config
 	(progn
 		(setq-default flycheck-check-syntax-automatically '(mode-enable save idle-change)
 					flycheck-completition-system 'ido
 					flycheck-highlighting-mode 'sexps
-					flycheck-disabled-checkers '(html-tidy emacs-lisp emacs-lisp-checkdoc))
+					flycheck-disabled-checkers '(html-tidy emacs-lisp emacs-lisp-checkdoc
+                                                 javascript-jshint json-jsonlist
+                                                 javascript-gjslint))
     
-		(global-flycheck-mode t)
-  ; (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
-  ;; flycheck errors on a tooltip (doesnt work on console)
-  (when (display-graphic-p (selected-frame))
-      '(custom-set-variables
-        '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
-  (setq flycheck-checkers (delq 'emacs-lisp-checkdoc flycheck-checkers))
-  (setq flycheck-checkers (delq 'html-tidy flycheck-checkers))
-  (setq flycheck-standard-error-navigation nil)))
+		;; (add-hook 'prog-mode-hook #'global-flycheck-mode)
+    (global-flycheck-mode)
+    ;; (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
+    ;; flycheck errors on a tooltip (doesnt work on console)
+    (setq flycheck-checkers '(javascript-eslint))
+    ;; use eslint with web-mode for jsx files
+    (flycheck-add-mode 'javascript-eslint 'web-mode)
+    (flycheck-add-mode 'javascript-eslint 'js2-mode)
+    (flycheck-add-mode 'javascript-eslint 'js-mode)
+    ;; (setq flycheck-standard-error-navigation nil)
+    (flycheck-pos-tip-mode)
+    ))
 
 (use-package yaml-mode
 	:config

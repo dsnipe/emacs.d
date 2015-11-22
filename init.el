@@ -79,3 +79,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(mode-line ((t (:background "grey75" :foreground "black")))))
+(put 'erase-buffer 'disabled nil)

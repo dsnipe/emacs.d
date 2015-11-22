@@ -48,7 +48,7 @@ If SUBMODE is not provided, use `LANG-mode' by default."
   ;; Mode names that derive directly from the language name
   (mapc 'my-mmm-markdown-auto-class
         '("awk" "bibtex" "c" "cpp" "css" "html" "js" "lisp" "makefile"
-          "markdown" "python" "r" "ruby" "sql" "json" "xml"))
+          "markdown" "python" "r" "ruby" "sql" "json" "xml" "sh"))
   :config
   (setq mmm-parse-when-idle 't)
   (global-set-key (kbd "C-c m p") 'mmm-parse-buffer))
@@ -159,6 +159,13 @@ If SUBMODE is not provided, use `LANG-mode' by default."
 		)
 	:config
 	(progn
+    (defun my-term-clear ()
+      (interactive)
+      (erase-buffer)
+      (comint-send-input))
+    (defun my-term-hook ()
+      (local-set-key "\C-cl") 'my-term-clear)
+    (add-hook 'term-mode-hook 'my-term-hook)
 		(defun term-send-tab ()
 			"Send tab for complettiotn"
 			(interactive)

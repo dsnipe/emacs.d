@@ -6,7 +6,7 @@ Additional packages:
 *** helm-flx - https://github.com/emacs-helm/helm/issues/145 
 *** 
 ** TODO blank-mode
-** DONE [#A] Better git gutter
+** DONE [#A] Better git gutter - diff-hl
 ** TODO Install session manager - http://desktopaid.sourceforge.net/
 ** TODO projectile-rails - learn and implement
 ** Move to Ivy mode instead of ace-jump
