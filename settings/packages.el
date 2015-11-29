@@ -159,13 +159,13 @@ If SUBMODE is not provided, use `LANG-mode' by default."
 		)
 	:config
 	(progn
-    (defun my-term-clear ()
-      (interactive)
-      (erase-buffer)
-      (comint-send-input))
-    (defun my-term-hook ()
-      (local-set-key "\C-cl") 'my-term-clear)
-    (add-hook 'term-mode-hook 'my-term-hook)
+    ;; (defun my-term-clear ()
+    ;;   (interactive)
+    ;;   (erase-buffer)
+    ;;   (comint-send-input))
+    ;; (defun my-term-hook ()
+    ;;   (local-set-key "\C-cl") 'my-term-clear)
+    ;; (add-hook 'term-mode-hook 'my-term-hook)
 		(defun term-send-tab ()
 			"Send tab for complettiotn"
 			(interactive)

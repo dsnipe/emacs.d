@@ -14,6 +14,15 @@
 (require 'diminish)
 (require 'bind-key)
 
+;; Load path helper function
+(defun add-subdirs-to-list (list base-path)
+  (let ((base-dir (file-name-as-directory base-path)))
+    (dolist (filename (directory-files base-dir))
+      (let ((path (concat base-dir filename)))
+        (when (and (file-directory-p path)
+                   (not (string= filename "."))
+                   (not (string= filename "..")))
+          (add-to-list list path))))))
 ;; Create a variable to store the path to this dotfile directory
 (setq dotfiles-dir (file-name-directory
 		    (or (buffer-file-name) load-file-name)))
@@ -33,6 +42,7 @@
 (load-dotfile "settings/backend-prog-modes.el")
 (load-dotfile "settings/packages.el")
 (load-dotfile "settings/prog-mode-packages.el")
+(load-dotfile "settings/org-mode.el")
 (load-dotfile "settings/ido-smex.el")
 (load-dotfile "settings/init-projectile.el")
 

@@ -72,6 +72,9 @@
 		(define-key evil-normal-state-map (kbd "TAB") 'dmt/shift-right-normal)
 		(define-key evil-visual-state-map (kbd "<backtab>") 'dmt/shift-left-visual)
 		(define-key evil-normal-state-map (kbd "<backtab>") 'dmt/shift-left-normal)
+
+    ;; Disable some Evil key bindings
+    '(define-key evil-normal-state-map (kbd "M-.") nil)
 		
 		;; Use C-HJKL to move on windows
 		(global-set-key (kbd "C-h") 'windmove-left)

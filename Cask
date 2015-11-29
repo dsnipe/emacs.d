@@ -75,6 +75,8 @@
 (depends-on "multiple-cursors")
 (depends-on "neotree")
 (depends-on "nodejs-repl")
+(depends-on "org-bullets")
+(depends-on "org-repo-todo")
 (depends-on "package-build")
 (depends-on "pallet")
 (depends-on "pcache")

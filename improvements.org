@@ -8,8 +8,10 @@ Additional packages:
 ** TODO blank-mode
 ** DONE [#A] Better git gutter - diff-hl
 ** TODO Install session manager - http://desktopaid.sourceforge.net/
-** TODO projectile-rails - learn and implement
-** Move to Ivy mode instead of ace-jump
+** TODO Implement Guide-key - https://github.com/kai2nenobu/guide-key
+** [[https://github.com/sabof/edit-color-stamp][Color picker]]
+** DONE [[https://github.com/sabof/org-bullets][Preaty org bullets]]
+** [[https://github.com/sabof/shift-text][Shift selected text]]
 * Bugs
 ** TODO [#A] Tab not working in Magit
    Might be related to `tab-indent-or-complete` in company settings
@@ -28,6 +30,7 @@ Additional packages:
    - [[https://github.com/edwtjo/evil-org-mode][evil-org-mode]]
 ** Bookmarks
    Maybe install Bookmarks+
+** TODO projectile-rails - learn and implement
 * What I can do better
 ** TODO [0/3] [#A] Tab problems with company-mode  
 *** TODO line-wraps for text modes (markdown, org, RST)
@@ -50,3 +53,11 @@ Info: http://habrahabr.ru/post/265635/
 ** DONE Enable Autorevert!
 ** DONE Set evli-emacs-mode instead of insert mode
    rebind esc to work with it and other bindings to insert mode
+
+
+Tips and tricks
+===============
+* Set specific state on modes for Evil rl
+  http://emacs.stackexchange.com/questions/9842/disable-evil-mode-when-git-timemachine-mode-is-activated
+* Themes
+** [[https://github.com/sabof/hyperplane-theme][Hyperplane theme]]

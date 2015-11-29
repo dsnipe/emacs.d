@@ -3,15 +3,19 @@
 ;;; Code: 
 
 ;; Themes and theme customizations
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(add-to-list 'custom-theme-load-path (concat user-emacs-directory "themes"))
+(add-subdirs-to-list 'custom-theme-load-path (concat user-emacs-directory "themes"))
+
 (if window-system
-    (load-theme 'Amelie t)
+    (load-theme 'atom-one-dark t)
   (load-theme 'monokai t))
 ;; (set-face-attribute 'default nil :background "unspecific-bg"))
 
 ;; Setup my favorite fonts
-(set-face-attribute 'default nil :family "Source Code Pro" :height 150 :weight 'normal)
+(set-face-attribute 'default nil :family "Source Code Pro" :height 148 :weight 'normal)
 (setq mac-allow-anti-aliasing nil)  ;; turn off anti-aliasing
+(setq-default line-spacing 2)
 ;;(set-face-attribute 'helm-candidate-number nil :background "#2875d7" :foreground "#fff")
 ;;
 ;; remember the cursor position of files when reopening them
